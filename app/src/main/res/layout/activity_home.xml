@@ -26,6 +26,7 @@
             android:layout_marginLeft="20sp"
             android:layout_marginTop="20sp"
             android:layout_marginRight="20sp"
+            android:onClick="goToAddEntryScreen"
             android:text="Add Entry" />
 
         <TextView
