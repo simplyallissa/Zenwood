@@ -37,5 +37,9 @@
             android:layout_marginBottom="20sp"
             android:text="Past Entries"
             android:textSize="24sp" />
+
+        <include
+            android:id="@id/content"
+            layout="@layout/content_main" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
