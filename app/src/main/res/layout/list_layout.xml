@@ -57,7 +57,7 @@
                 android:id="@+id/emojiImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@tools:sample/avatars" />
+                android:src="@drawable/emojiexample" />
 
             <TextView
                 android:id="@+id/ratingTextView"

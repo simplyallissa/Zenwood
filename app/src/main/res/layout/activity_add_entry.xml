@@ -124,7 +124,9 @@
             android:ems="10"
             android:gravity="top"
             android:hint="Write your entry here."
-            android:inputType="text|textMultiLine" />
+            android:inputType="text|textMultiLine"
+            android:background="@drawable/edit_text_background"
+            />
     </LinearLayout>
 
     <LinearLayout
