@@ -3,40 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/textViewWelcomeBack"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/BG_Home"
+    >
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/textViewWelcomeMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
+            android:layout_marginStart="15sp"
+            android:fontFamily="sans-serif-light"
             android:text="Welcome back! What are you feeling grateful for today?"
-            android:textAlignment="center"
-            android:textSize="34sp" />
+            android:textAlignment="viewStart"
+            android:textColor="#DFD6A8"
+            android:textSize="34sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonAddEntry"
-            android:layout_width="match_parent"
+            android:layout_width="176dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20sp"
-            android:layout_marginTop="20sp"
+            android:layout_marginLeft="120sp"
+            android:layout_marginTop="215sp"
             android:layout_marginRight="20sp"
             android:onClick="goToAddEntryScreen"
-            android:text="Add Entry" />
+            android:text="Add Entry"
+            android:textColor="#DFD6A8" />
 
         <TextView
             android:id="@+id/textViewPastEntries"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20sp"
-            android:layout_marginTop="20sp"
+            android:layout_marginLeft="0sp"
+            android:layout_marginTop="13sp"
+            android:layout_marginRight="0sp"
             android:layout_marginBottom="20sp"
+            android:background="#372A59"
             android:text="Past Entries"
+            android:textAlignment="center"
+            android:textColor="#867B98"
             android:textSize="24sp" />
 
         <include
