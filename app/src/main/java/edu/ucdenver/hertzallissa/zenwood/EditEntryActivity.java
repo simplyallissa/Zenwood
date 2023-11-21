@@ -4,12 +4,18 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import edu.ucdenver.hertzallissa.zenwood.databinding.ActivityAddEntryBinding;
+import edu.ucdenver.hertzallissa.zenwood.databinding.ActivityEditEntryBinding;
+
 public class EditEntryActivity extends AppCompatActivity {
+
+    private ActivityEditEntryBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_entry);
+        binding = ActivityEditEntryBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
     }
 }

@@ -1,18 +1,36 @@
-package edu.ucdenver.hertzallissa.zenwood;
+package edu.ucdenver.hertzallissa.zenwood.db;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Entry {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    @ColumnInfo(name = "date")
     private int date;
+    @ColumnInfo(name = "last_update")
     private int lastUpdate;
-    private String firstLine;
+    @ColumnInfo(name = "emoji")
     private String emoji;
+    @ColumnInfo(name = "rating")
     private int rating;
-
+    @ColumnInfo(name = "first_line")
+    private String firstLine;
     public Entry(int date, int lastUpdate, String firstLine, String emoji, int rating) {
-        this.date = 0;
         this.lastUpdate=lastUpdate;
         this.firstLine = firstLine;
         this.emoji = emoji;
         this.rating = rating;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getDate() {

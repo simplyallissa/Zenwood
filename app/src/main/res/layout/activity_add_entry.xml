@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:background="?attr/colorPrimary">
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -112,33 +119,34 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="397dp"
+        android:layout_height="340dp"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/entryInputEditText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="320dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
+            android:background="@drawable/edit_text_background"
             android:ems="10"
             android:gravity="top"
             android:hint="Write your entry here."
-            android:inputType="text|textMultiLine"
-            android:background="@drawable/edit_text_background"
-            />
+            android:inputType="text|textMultiLine" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:textAlignment="center">
 
         <Button
             android:id="@+id/addButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add" />
+            android:text="Add"
+            android:textAlignment="center" />
     </LinearLayout>
 
 </LinearLayout>

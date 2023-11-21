@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/welcomeBacklayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_home"
-    >
+    android:background="@drawable/bg_home">
 
 
     <LinearLayout
@@ -18,8 +17,8 @@
             android:id="@+id/welcomeMessageTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
             android:layout_marginStart="15sp"
+            android:layout_marginTop="20sp"
             android:fontFamily="sans-serif-light"
             android:text="Welcome back! What are you feeling grateful for today?"
             android:textAlignment="viewStart"
@@ -56,4 +55,4 @@
             android:id="@id/content"
             layout="@layout/content_main" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
