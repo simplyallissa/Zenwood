@@ -51,8 +51,22 @@
             android:textColor="#867B98"
             android:textSize="24sp" />
 
-        <include
-            android:id="@id/content"
-            layout="@layout/content_main" />
+        <ScrollView
+            style="@android:style/Widget.Holo.ScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false"
+            android:fadingEdge="horizontal|vertical|none"
+            android:requiresFadingEdge="vertical|none"
+            android:scrollbarThumbVertical="@android:color/white">
+
+
+            <include
+                android:id="@id/content"
+                layout="@layout/content_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+
     </LinearLayout>
 </LinearLayout>

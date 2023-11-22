@@ -1,17 +1,14 @@
 package edu.ucdenver.hertzallissa.zenwood;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +18,6 @@ import edu.ucdenver.hertzallissa.zenwood.databinding.ActivityHomeBinding;
 import edu.ucdenver.hertzallissa.zenwood.db.Entry;
 
 public class HomeActivity extends AppCompatActivity {
-
-    private ArrayList<Entry> list;
 
     private ActivityHomeBinding binding;
 
@@ -34,7 +29,7 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        list = new ArrayList<Entry>();
+        ArrayList<Entry> list = new ArrayList<Entry>();
 
         entryAdapter = new EntryAdapter(this);
 
@@ -56,11 +51,19 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-
-
     public void goToAddEntryScreen(View view){
         Intent intent = new Intent(HomeActivity.this, AddEntryActivity.class);
         startActivity(intent);
     }
+
+
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//
+//        if(id == R.id.) {
+//
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
 }

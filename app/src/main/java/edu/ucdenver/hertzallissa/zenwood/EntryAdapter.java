@@ -1,9 +1,11 @@
 package edu.ucdenver.hertzallissa.zenwood;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +42,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
         View listItem = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_layout, parent, false);
 
+
         return new ListItemHolder(listItem);
     }
 
@@ -73,6 +76,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
 
         private TextView ratingTextView;
 
+        private ImageView editButton;
+
         public ListItemHolder(View itemView) {
             super(itemView);
 
@@ -81,18 +86,19 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
             lastUpdateTextView = itemView.findViewById(R.id.lastUpdateTextView);
             emojiImageView = itemView.findViewById(R.id.emojiImageView);
             ratingTextView = itemView.findViewById(R.id.ratingTextView);
-//            itemView.setOnClickListener(this);
+            editButton = itemView.findViewById(R.id.editImageView);
+
         }
 
-        // Bind data to views in the list item
-        public void bind(Entry entry) {
-            // Update your view references with data from the entry
-            // For example: textView.setText(entry.getFirstLine());
-        }
 
         @Override
         public void onClick(View view) {
             // Handle item click if needed
+            Entry entry = (Entry) itemView.getTag();
+            Intent intent = new Intent(context, EditEntryActivity.class);
+            intent.putExtra("entryId", entry.getId());
+            context.startActivity(intent);
+
         }
     }
 }
