@@ -14,4 +14,12 @@
     <string name="edit_button_text">edit</string>
     <string name="delete">Delete</string>
     <string name="this_is_a_new_entry_about_what_i_am_grateful_for">This is a new entry about what I am grateful for.</string>
+    <string name="no_entries_to_display">No entries to display.</string>
+    <string name="past_entries">Past Entries</string>
+    <string name="add_entry">Add Entry</string>
+    <string name="welcome_back_what_are_you_feeling_grateful_for_today">Welcome back! What are you feeling grateful for today?</string>
+    <string name="last_update_date">Last Update Date</string>
+    <string name="updated">Updated:</string>
+    <string name="date">Date</string>
+    <string name="created">Created:</string>
 </resources>

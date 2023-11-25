@@ -2,10 +2,10 @@ package edu.ucdenver.hertzallissa.zenwood;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.ucdenver.hertzallissa.zenwood.db.AppDatabase;
 import edu.ucdenver.hertzallissa.zenwood.db.Entry;
 
 public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHolder> {
@@ -24,6 +25,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
     private List<Entry> entryList;
     public EntryAdapter(Context context){
         this.context = context;
+        this.entryList = new ArrayList<>();
     }
 
     public EntryAdapter(HomeActivity homeActivity, ArrayList<Entry> entryList) {
@@ -57,12 +59,21 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
 
         holder.itemView.setTag(entry);
 
+        if (homeActivity != null) {
+            homeActivity.updateNoEntriesTextViewVisibility(entryList);
+        }
     }
 
     @Override
     public int getItemCount() {
         return entryList.size();
     }
+
+    public void removeFromEntryList(Entry entry) {
+        entryList.remove(entry);
+        notifyDataSetChanged();
+    }
+
 
     public class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -78,6 +89,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
 
         private ImageView editButton;
 
+        private ImageView deleteButton;
+
         public ListItemHolder(View itemView) {
             super(itemView);
 
@@ -88,17 +101,58 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
             ratingTextView = itemView.findViewById(R.id.ratingTextView);
             editButton = itemView.findViewById(R.id.editImageView);
 
+            itemView.setOnClickListener(this);
+
+            deleteButton = itemView.findViewById(R.id.deleteImageView);
+            deleteButton.setOnClickListener(this);
+
         }
 
 
         @Override
         public void onClick(View view) {
-            // Handle item click if needed
-            Entry entry = (Entry) itemView.getTag();
-            Intent intent = new Intent(context, EditEntryActivity.class);
-            intent.putExtra("entryId", entry.getId());
-            context.startActivity(intent);
+            int id = view.getId();
 
+            if (id == R.id.editImageView) {
+                // Handle edit button click
+                Entry entry = (Entry) itemView.getTag();
+                Intent intent = new Intent(context, EditEntryActivity.class);
+                intent.putExtra("entryId", entry.getId());
+                context.startActivity(intent);
+            } else if (id == R.id.deleteImageView) {
+                // Handle delete button click
+                Entry entry = (Entry) itemView.getTag();
+                deleteEntry(entry);
+            } else {
+                // Handle other clicks if needed
+            }
         }
+
+        private void deleteEntry(Entry entry) {
+            int position = getAbsoluteAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                // Remove from the adapter
+                entryList.remove(position);
+                notifyItemRemoved(position);
+
+                if (homeActivity != null) {
+                    homeActivity.removeFromEntryList(entry);
+                    homeActivity.updateNoEntriesTextViewVisibility(entryList);
+                }
+
+                // Delete from the database
+                AppDatabase db = AppDatabase.getDbInstance(context);
+                AsyncTask.execute(() -> {
+                    db.entryDao().deleteEntry(entry);
+                });
+            }
+        }
+
+
+
+
     }
+
+
+
 }

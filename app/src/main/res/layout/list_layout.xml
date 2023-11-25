@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <!-- Vertical LinearLayout for dateTextView and lastUpdateTextView -->
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
             android:id="@+id/currentDateTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Created:"
+            android:text="@string/created"
             android:textColor="#FFFFFF"
             android:textSize="20sp"/>
 
@@ -23,7 +23,7 @@
             android:id="@+id/dateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date"
+            android:text="@string/date"
             android:textColor="#DFD6A8"
             android:textSize="22sp"
             android:layout_marginEnd="8dp"/>
@@ -33,19 +33,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
-            android:text="Updated:"
+            android:text="@string/updated"
             android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/lastUpdateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Last Update Date"
+            android:text="@string/last_update_date"
             android:textColor="#DFD6A8"
             android:textSize="22sp"/>
     </LinearLayout>
 
-    <!-- LinearLayout for firstLineTextView -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -64,13 +63,11 @@
             android:ellipsize="end"/>
     </LinearLayout>
 
-    <!-- LinearLayout for square grid of icons -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Square grid for icons -->
         <GridLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

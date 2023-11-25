@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -20,8 +21,8 @@ import edu.ucdenver.hertzallissa.zenwood.db.Entry;
 public class HomeActivity extends AppCompatActivity {
 
     private ActivityHomeBinding binding;
-
     private EntryAdapter entryAdapter;
+    private TextView noEntriesTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +30,14 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        entryAdapter = new EntryAdapter(this);
+        entryAdapter = new EntryAdapter(this, new ArrayList<>());
+
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         binding.content.recyclerView.setLayoutManager(layoutManager);
         binding.content.recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         binding.content.recyclerView.setAdapter(entryAdapter);
+        noEntriesTextView = binding.noEntriesTextView;
 
         loadEntryList();
     }
@@ -48,7 +51,30 @@ public class HomeActivity extends AppCompatActivity {
         entryAdapter.setEntryList(entryList);
         entryAdapter.notifyDataSetChanged();
 
+        updateNoEntriesTextViewVisibility(entryList);
+
     }
+
+    void updateNoEntriesTextViewVisibility(List<Entry> entryList) {
+        if (entryList.isEmpty()) {
+            showNoEntriesTextView(); // Show the TextView when there are no entries
+        } else {
+            hideNoEntriesTextView(); // Hide the TextView when there are entries
+        }
+    }
+
+    public void showNoEntriesTextView() {
+        noEntriesTextView.setVisibility(View.VISIBLE);
+    }
+
+    public void hideNoEntriesTextView() {
+        noEntriesTextView.setVisibility(View.GONE);
+    }
+
+    public void removeFromEntryList(Entry entry) {
+        entryAdapter.removeFromEntryList(entry);
+    }
+
 
     public void goToAddEntryScreen(View view){
         Intent intent = new Intent(HomeActivity.this, AddEntryActivity.class);
