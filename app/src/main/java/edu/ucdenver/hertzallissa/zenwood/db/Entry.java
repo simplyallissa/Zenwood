@@ -14,37 +14,21 @@ public class Entry {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo(name = "date")
-    private String date;
+    private long date;
     @ColumnInfo(name = "last_update")
-    private String lastUpdate;
+    private long lastUpdate;
     @ColumnInfo(name = "emoji")
     private String emoji;
     @ColumnInfo(name = "rating")
     private int rating;
     @ColumnInfo(name = "first_line")
     private String firstLine;
-    public Entry(String firstLine, String emoji, int rating) {
+    public Entry(long date, long lastUpdate, String firstLine, String emoji, int rating) {
+        this.date = date;
+        this.lastUpdate = lastUpdate;
         this.firstLine = firstLine;
         this.emoji = emoji;
         this.rating = rating;
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date currentDate = Calendar.getInstance().getTime();
-        this.date = formatDate(dateFormat.format(currentDate));
-        this.lastUpdate = formatDate(dateFormat.format(currentDate));
-    }
-
-    private String formatDate(String date) {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("MM/dd/yy");
-
-        try {
-            Date parsedDate = inputFormat.parse(date);
-            return outputFormat.format(parsedDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return date; // return the original date in case of error
-        }
     }
 
     public int getId() {
@@ -55,20 +39,20 @@ public class Entry {
         this.id = id;
     }
 
-    public String getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 
-    public String getLastUpdate() {
+    public long getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(String lastUpdate) {
-        this.lastUpdate = lastUpdate;
+    public void setLastUpdate(Long lastUpdate) {
+        this.lastUpdate = Long.parseLong(String.valueOf(lastUpdate));
     }
 
     public String getFirstLine() {

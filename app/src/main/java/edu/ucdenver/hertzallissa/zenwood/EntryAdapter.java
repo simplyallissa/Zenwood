@@ -12,7 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import edu.ucdenver.hertzallissa.zenwood.db.AppDatabase;
@@ -52,9 +54,9 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
     public void onBindViewHolder(@NonNull ListItemHolder holder, int position) {
         Entry entry = entryList.get (position);
 
-        holder.dateTextView.setText(String.valueOf(entry.getDate()));
+        holder.dateTextView.setText(formatDate(entry.getDate()));
         holder.firstLineTextView.setText(entry.getFirstLine());
-        holder.lastUpdateTextView.setText(String.valueOf(entry.getLastUpdate()));
+        holder.lastUpdateTextView.setText(formatDate(entry.getLastUpdate()));
         holder.ratingTextView.setText(String.valueOf(entry.getRating()));
 
         holder.itemView.setTag(entry);
@@ -72,6 +74,12 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
     public void removeFromEntryList(Entry entry) {
         entryList.remove(entry);
         notifyDataSetChanged();
+    }
+
+    private String formatDate(long timestamp) {
+        // Use SimpleDateFormat to format the timestamp as "MM/dd/yy"
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+        return sdf.format(new Date(timestamp));
     }
 
 

@@ -13,7 +13,6 @@ import java.util.List;
 
 import edu.ucdenver.hertzallissa.zenwood.db.AppDatabase;
 import edu.ucdenver.hertzallissa.zenwood.db.Entry;
-import edu.ucdenver.hertzallissa.zenwood.db.EntryDao;
 import edu.ucdenver.hertzallissa.zenwood.databinding.ActivityAddEntryBinding;
 
 public class AddEntryActivity extends AppCompatActivity {
@@ -53,9 +52,10 @@ public class AddEntryActivity extends AppCompatActivity {
     private void addEntryToDatabase(Date date, Date lastUpdate, String firstLine, String emoji, int rating) {
         AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
 
-        Entry entry = new Entry(firstLine, emoji, rating);
-        entry.setDate(formatDate(date));
-        entry.setLastUpdate(formatDate(lastUpdate));
+        long dateTimpestamp = date.getTime();
+        Entry entry = new Entry(dateTimpestamp, dateTimpestamp, firstLine, emoji, rating);
+        entry.setDate(formatDate(dateTimpestamp));
+        entry.setLastUpdate(formatDate(lastUpdate.getTime()));
         long entryId = db.entryDao().insertEntry(entry);
         // This is to log the entry id after it is added
         List<Entry> entryList = db.entryDao().getAllEntries();
@@ -69,9 +69,8 @@ public class AddEntryActivity extends AppCompatActivity {
         finish();
     }
 
-    private String formatDate(Date date) {
-        SimpleDateFormat outputFormat = new SimpleDateFormat("MM/dd/yy");
-        return outputFormat.format(date);
+    private long formatDate(long timestamp) {
+        return timestamp;
     }
 
 }
