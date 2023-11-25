@@ -4,25 +4,47 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 @Entity
 public class Entry {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo(name = "date")
-    private int date;
+    private String date;
     @ColumnInfo(name = "last_update")
-    private int lastUpdate;
+    private String lastUpdate;
     @ColumnInfo(name = "emoji")
     private String emoji;
     @ColumnInfo(name = "rating")
     private int rating;
     @ColumnInfo(name = "first_line")
     private String firstLine;
-    public Entry(int date, int lastUpdate, String firstLine, String emoji, int rating) {
-        this.lastUpdate=lastUpdate;
+    public Entry(String firstLine, String emoji, int rating) {
         this.firstLine = firstLine;
         this.emoji = emoji;
         this.rating = rating;
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date currentDate = Calendar.getInstance().getTime();
+        this.date = formatDate(dateFormat.format(currentDate));
+        this.lastUpdate = formatDate(dateFormat.format(currentDate));
+    }
+
+    private String formatDate(String date) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("MM/dd/yy");
+
+        try {
+            Date parsedDate = inputFormat.parse(date);
+            return outputFormat.format(parsedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return date; // return the original date in case of error
+        }
     }
 
     public int getId() {
@@ -33,19 +55,19 @@ public class Entry {
         this.id = id;
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public int getLastUpdate() {
+    public String getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(int lastUpdate) {
+    public void setLastUpdate(String lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

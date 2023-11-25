@@ -13,4 +13,5 @@
     <string name="edit">Edit</string>
     <string name="edit_button_text">edit</string>
     <string name="delete">Delete</string>
+    <string name="this_is_a_new_entry_about_what_i_am_grateful_for">This is a new entry about what I am grateful for.</string>
 </resources>

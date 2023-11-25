@@ -29,8 +29,6 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ArrayList<Entry> list = new ArrayList<Entry>();
-
         entryAdapter = new EntryAdapter(this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -48,6 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         Log.d("HomeActivity", "Number of entries: " + entryList.size());
 
         entryAdapter.setEntryList(entryList);
+        entryAdapter.notifyDataSetChanged();
 
     }
 
@@ -65,5 +64,11 @@ public class HomeActivity extends AppCompatActivity {
 //        }
 //        return super.onOptionsItemSelected(item);
 //    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        loadEntryList();
+
+    }
 
 }
