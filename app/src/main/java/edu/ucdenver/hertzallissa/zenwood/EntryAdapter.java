@@ -47,7 +47,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
                 .inflate(R.layout.list_layout, parent, false);
 
 
-        return new ListItemHolder(listItem);
+        return new ListItemHolder(listItem, parent.getContext());
     }
 
     @Override
@@ -85,21 +85,16 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
 
     public class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private Context context;
         private TextView dateTextView;
-
         private TextView firstLineTextView;
-
         private TextView lastUpdateTextView;
-
         private ImageView emojiImageView;
-
         private TextView ratingTextView;
-
         private ImageView editButton;
-
         private ImageView deleteButton;
 
-        public ListItemHolder(View itemView) {
+        public ListItemHolder(View itemView, Context context) {
             super(itemView);
 
             dateTextView = itemView.findViewById(R.id.dateTextView);
@@ -113,6 +108,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
 
             deleteButton = itemView.findViewById(R.id.deleteImageView);
             deleteButton.setOnClickListener(this);
+
+            editButton = itemView.findViewById(R.id.editImageView);
+            editButton.setOnClickListener(this);
+
+            this.context = context;
 
         }
 
