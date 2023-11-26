@@ -41,7 +41,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:text="@string/what_emoji_best_describes_your_day"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textColor="#DFD6A8"/>
     </LinearLayout>
 
@@ -99,22 +99,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="20dp"
-                android:contentDescription="@string/enter_a_number_1_10"
                 android:text="@string/how_was_your_day"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textColor="#DFD6A8"/>
             <EditText
                 android:id="@+id/rating2EditText"
-                android:layout_width="195dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="@string/enter_a_number_1_10"
                 android:inputType="number"
+                android:focusable="true"
+                android:clickable="true"
                 android:textSize="20sp"
+                android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"/>
         </TableRow>
     </TableLayout>
@@ -128,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="@string/what_are_you_grateful_for"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textColor="#DFD6A8"/>
     </LinearLayout>
 

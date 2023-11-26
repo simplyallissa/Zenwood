@@ -24,7 +24,7 @@ public class EditEntryActivity extends AppCompatActivity {
     private ActivityEditEntryBinding binding;
     private EntryAdapter entryAdapter;
     private String selectedEmoji = "";
-    private long entryId;
+    private long entryId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,17 @@ public class EditEntryActivity extends AppCompatActivity {
         entryAdapter = new EntryAdapter(this);
 
         entryId = getIntent().getLongExtra("ENTRY_ID", -1);
+        Log.d("EditEntryActivity", "Entry ID received: " + entryId);
 
+        String selectedEmoji = getIntent().getStringExtra("SELECTED_EMOJI");
+        int selectedRating = getIntent().getIntExtra("SELECTED_RATING", -1);
+        binding.rating2EditText.setText(String.valueOf(selectedRating));
+        String selectedEntryText = getIntent().getStringExtra("SELECTED_ENTRY_TEXT");
+        binding.entryInput2EditText.setText(String.valueOf(selectedEntryText));
         loadEntryDetails(entryId);
+        onEmojiSelected(getEmojiResourceFromString(selectedEmoji));
+
+
         //This makes all of the emoji images clickable and when clicked passes in the resource id to onEmojiSelected
         binding.emojiImage2View1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,12 +97,14 @@ public class EditEntryActivity extends AppCompatActivity {
     }
 
     private void loadEntryDetails(long entryId) {
+        Log.d("EditEntryActivity", "Load Entry Details - Entry ID: " + entryId);
         // Load the entry details from the database using the entryId
         AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
         Entry entry = db.entryDao().getEntryById(entryId);
-
+        Log.d("EditEntryActivity", "Load Entry Details - Entry ID: " + entryId);
         // Populate the UI elements with entry details
         if (entry != null) {
+            Log.d("EditEntryActivity", "Loaded Entry ID: " + entry.getId());
             selectedEmoji = entry.getEmoji();
             onEmojiSelected(getEmojiResourceFromString(selectedEmoji));
             binding.rating2EditText.setText(String.valueOf(entry.getRating()));
@@ -102,6 +113,7 @@ public class EditEntryActivity extends AppCompatActivity {
     }
 
     private void updateEntry() {
+        Log.d("EditEntryActivity", "Update Entry method called");
         String emoji = selectedEmoji;
         if (selectedEmoji.isEmpty()) {
             showAlertDialog("You must select an emoji.");
@@ -133,6 +145,7 @@ public class EditEntryActivity extends AppCompatActivity {
         // Update the entry in the database
         AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
         Entry entry = db.entryDao().getEntryById(entryId);
+        Log.d("EditEntryActivity", "Entry ID: " + entryId);
         if (entry != null) {
             entry.setEmoji(emoji);
             entry.setRating(rating);
@@ -142,10 +155,13 @@ public class EditEntryActivity extends AppCompatActivity {
             // Save the updated entry
             db.entryDao().updateEntry(entry);
 
-            // Notify the adapter or perform any other necessary actions
-            // (e.g., update the UI with the latest data)
+            List<Entry> entryList = db.entryDao().getAllEntries();
+            Log.d("AddEntryActivity", "Number of entries after insertion: " + entryList.size());
 
-            // Finish the activity
+            entryAdapter.setEntryList(entryList);
+            entryAdapter.notifyDataSetChanged();
+            Log.d("EditEntryActivity", "Update Entry Clicked");
+
             finish();
         }
     }
@@ -176,7 +192,6 @@ public class EditEntryActivity extends AppCompatActivity {
         if (selectedImageView != null) {
             selectedImageView.setBackgroundColor(getResources().getColor(R.color.selectedEmojiBackground));
         }
-
     }
 
     private void resetEmojiImageViewsBackground() {
@@ -228,7 +243,6 @@ public class EditEntryActivity extends AppCompatActivity {
             onBackPressed();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -246,5 +260,4 @@ public class EditEntryActivity extends AppCompatActivity {
                 });
         builder.create().show();
     }
-
 }

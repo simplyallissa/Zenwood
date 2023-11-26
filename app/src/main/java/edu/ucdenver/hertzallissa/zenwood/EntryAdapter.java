@@ -66,6 +66,20 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
         if (homeActivity != null) {
             homeActivity.updateNoEntriesTextViewVisibility(entryList);
         }
+
+        holder.editButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Entry selectedEntry = entryList.get(holder.getAbsoluteAdapterPosition());
+                Intent intent = new Intent(view.getContext(), EditEntryActivity.class);
+                intent.putExtra("ENTRY_ID", selectedEntry.getId());
+                intent.putExtra("SELECTED_EMOJI", selectedEntry.getEmoji());
+                intent.putExtra("SELECTED_RATING", selectedEntry.getRating());
+                intent.putExtra("SELECTED_ENTRY_TEXT", selectedEntry.getFirstLine());
+
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     private int getEmojiResourceId(String emoji) {

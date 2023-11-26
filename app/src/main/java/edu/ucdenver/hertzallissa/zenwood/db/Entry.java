@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Entry {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private long id;
     @ColumnInfo(name = "date")
     private long date;
     @ColumnInfo(name = "last_update")
@@ -26,7 +26,7 @@ public class Entry {
         this.rating = rating;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -42,7 +42,7 @@ public class Entry {
         this.date = date;
     }
 
-    public long getLastUpdate() {
+    public Long getLastUpdate() {
         return lastUpdate;
     }
 
