@@ -42,7 +42,6 @@
             android:layout_marginLeft="0sp"
             android:layout_marginTop="13sp"
             android:layout_marginRight="0sp"
-            android:layout_marginBottom="20sp"
             android:background="#372A59"
             android:text="@string/past_entries"
             android:textAlignment="center"
@@ -51,20 +50,25 @@
 
         <TextView
             android:id="@+id/noEntriesTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#2d2534"
+            android:gravity="center"
+            android:paddingTop="20sp"
             android:text="@string/no_entries_to_display"
             android:textColor="#DFD6A8"
             android:textSize="24sp"
-            android:visibility="gone"
-            android:layout_gravity="center"/>
+            android:visibility="gone" />
 
         <ScrollView
             style="@android:style/Widget.Holo.ScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#2d2534"
             android:fadeScrollbars="false"
             android:fadingEdge="horizontal|vertical|none"
+            android:paddingTop="20sp"
             android:requiresFadingEdge="vertical|none"
             android:scrollbarThumbVertical="@android:color/white">
 

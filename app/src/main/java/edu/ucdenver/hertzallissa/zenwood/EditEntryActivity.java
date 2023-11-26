@@ -102,7 +102,6 @@ public class EditEntryActivity extends AppCompatActivity {
         AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
         Entry entry = db.entryDao().getEntryById(entryId);
         Log.d("EditEntryActivity", "Load Entry Details - Entry ID: " + entryId);
-        // Populate the UI elements with entry details
         if (entry != null) {
             Log.d("EditEntryActivity", "Loaded Entry ID: " + entry.getId());
             selectedEmoji = entry.getEmoji();
@@ -217,7 +216,6 @@ public class EditEntryActivity extends AppCompatActivity {
         return null;
     }
 
-
     private String getEmojiStringFromResource(int resId) {
         if (resId == R.drawable.em_complicated) {
             return "em_complicated";
@@ -244,10 +242,6 @@ public class EditEntryActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private long formatDate(long timestamp) {
-        return timestamp;
     }
 
     private void showAlertDialog(String message) {
