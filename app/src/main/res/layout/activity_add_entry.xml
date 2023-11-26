@@ -12,6 +12,13 @@
         android:layout_height="53dp"
         android:background="?attr/colorPrimary">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/addToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout

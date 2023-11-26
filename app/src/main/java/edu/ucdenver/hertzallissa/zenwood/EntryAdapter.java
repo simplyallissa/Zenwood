@@ -46,7 +46,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
         View listItem = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_layout, parent, false);
 
-
         return new ListItemHolder(listItem, parent.getContext());
     }
 
@@ -54,15 +53,53 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
     public void onBindViewHolder(@NonNull ListItemHolder holder, int position) {
         Entry entry = entryList.get (position);
 
+        int emojiResId = getEmojiResourceId(entry.getEmoji());
+
         holder.dateTextView.setText(formatDate(entry.getDate()));
         holder.firstLineTextView.setText(entry.getFirstLine());
         holder.lastUpdateTextView.setText(formatDate(entry.getLastUpdate()));
         holder.ratingTextView.setText(String.valueOf(entry.getRating()));
 
+        holder.updateEmoji(emojiResId);
         holder.itemView.setTag(entry);
 
         if (homeActivity != null) {
             homeActivity.updateNoEntriesTextViewVisibility(entryList);
+        }
+    }
+
+    private int getEmojiResourceId(String emoji) {
+        // Your logic to convert emoji string to resource ID
+        switch (emoji) {
+            case "em_complicated":
+                return R.drawable.em_complicated;
+            case "em_good":
+                return R.drawable.em_good;
+            case "em_moderate":
+                return R.drawable.em_moderate;
+            case "em_poor":
+                return R.drawable.em_poor;
+            case "em_shocking":
+                return R.drawable.em_shocking;
+            // Add more cases if needed for other emojis
+            default:
+                return R.drawable.em_complicated; // Default emoji if none matches
+        }
+    }
+
+    static class EntryViewHolder extends RecyclerView.ViewHolder {
+        // Existing code...
+
+        ImageView emojiImageView;
+
+        // Constructor for EntryViewHolder
+        EntryViewHolder(View itemView) {
+            super(itemView);
+            // Existing code...
+
+            emojiImageView = itemView.findViewById(R.id.emojiImageView);
+
+            // Continue with the rest of your ViewHolder initialization...
         }
     }
 
@@ -93,6 +130,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
         private TextView ratingTextView;
         private ImageView editButton;
         private ImageView deleteButton;
+
+        public void updateEmoji(int emojiResId) {
+            emojiImageView.setImageResource(emojiResId);
+        }
 
         public ListItemHolder(View itemView, Context context) {
             super(itemView);
@@ -156,11 +197,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
             }
         }
 
-
-
-
     }
-
-
 
 }
