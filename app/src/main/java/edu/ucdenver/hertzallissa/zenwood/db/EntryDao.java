@@ -20,7 +20,7 @@ public interface EntryDao {
     long insertEntry(Entry entry);
 
     @Update
-    void editExistingEntry(Entry entry);
+    void updateEntry(Entry entry);
 
     @Delete
     void deleteEntry(Entry entry);
