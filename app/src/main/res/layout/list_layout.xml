@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,7 +80,7 @@
                 android:layout_height="60dp"
                 android:background="?selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:contentDescription="Edit"
+                android:contentDescription="@string/editbutton"
                 android:focusable="true"
                 app:srcCompat="@drawable/ic_edit"
                 android:layout_column="0"
@@ -100,7 +99,7 @@
                 android:id="@+id/ratingTextView"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:text="Rating"
+                android:text="@string/rating"
                 android:textColor="#DFD6A8"
                 android:textSize="30sp"
                 android:gravity="center"
@@ -114,7 +113,7 @@
                 android:layout_height="60dp"
                 android:background="?selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:contentDescription="Delete"
+                android:contentDescription="@string/deletebutton"
                 android:focusable="true"
                 app:srcCompat="@drawable/ic_delete"
                 android:layout_column="1"

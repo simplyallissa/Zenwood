@@ -8,7 +8,6 @@ android {
     namespace = "edu.ucdenver.hertzallissa.zenwood"
 
     buildFeatures {
-//        dataBinding = true
         viewBinding = true
     }
 

@@ -69,7 +69,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
     }
 
     private int getEmojiResourceId(String emoji) {
-        // Your logic to convert emoji string to resource ID
         switch (emoji) {
             case "em_complicated":
                 return R.drawable.em_complicated;
@@ -81,25 +80,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
                 return R.drawable.em_poor;
             case "em_shocking":
                 return R.drawable.em_shocking;
-            // Add more cases if needed for other emojis
             default:
-                return R.drawable.em_complicated; // Default emoji if none matches
-        }
-    }
-
-    static class EntryViewHolder extends RecyclerView.ViewHolder {
-        // Existing code...
-
-        ImageView emojiImageView;
-
-        // Constructor for EntryViewHolder
-        EntryViewHolder(View itemView) {
-            super(itemView);
-            // Existing code...
-
-            emojiImageView = itemView.findViewById(R.id.emojiImageView);
-
-            // Continue with the rest of your ViewHolder initialization...
+                return R.drawable.em_complicated;
         }
     }
 
@@ -114,11 +96,9 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
     }
 
     private String formatDate(long timestamp) {
-        // Use SimpleDateFormat to format the timestamp as "MM/dd/yy"
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
         return sdf.format(new Date(timestamp));
     }
-
 
     public class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -163,24 +143,20 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
             int id = view.getId();
 
             if (id == R.id.editImageView) {
-                // Handle edit button click
                 Entry entry = (Entry) itemView.getTag();
                 Intent intent = new Intent(context, EditEntryActivity.class);
                 intent.putExtra("entryId", entry.getId());
                 context.startActivity(intent);
             } else if (id == R.id.deleteImageView) {
-                // Handle delete button click
                 Entry entry = (Entry) itemView.getTag();
                 deleteEntry(entry);
-            } else {
-                // Handle other clicks if needed
             }
         }
 
         private void deleteEntry(Entry entry) {
             int position = getAbsoluteAdapterPosition();
             if (position != RecyclerView.NO_POSITION) {
-                // Remove from the adapter
+
                 entryList.remove(position);
                 notifyItemRemoved(position);
 
@@ -189,14 +165,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.ListItemHold
                     homeActivity.updateNoEntriesTextViewVisibility(entryList);
                 }
 
-                // Delete from the database
                 AppDatabase db = AppDatabase.getDbInstance(context);
                 AsyncTask.execute(() -> {
                     db.entryDao().deleteEntry(entry);
                 });
             }
         }
-
     }
-
 }

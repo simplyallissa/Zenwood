@@ -1,14 +1,20 @@
 package edu.ucdenver.hertzallissa.zenwood;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.Date;
 import java.util.List;
@@ -32,6 +38,7 @@ public class AddEntryActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(null);
 
         entryAdapter = new EntryAdapter(this);
 
@@ -76,6 +83,10 @@ public class AddEntryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String emoji = selectedEmoji;
+                if (selectedEmoji.isEmpty()){
+                    showAlertDialog("You must select an emoji.");
+                    return;
+                }
                 int rating;
                 try {
                     rating = Integer.parseInt(binding.ratingEditText.getText().toString());
@@ -83,45 +94,40 @@ public class AddEntryActivity extends AppCompatActivity {
                     Log.e("AddEntryActivity", "Error parsing rating: " + e.getMessage());
                     rating = 0;
                 }
+                if (rating < 0 || rating > 10) {
+                    showAlertDialog("Your rating must be a number 1-10.");
+                    return;
+                }
+                String ratingText = binding.ratingEditText.getText().toString();
+                if (ratingText.isEmpty()) {
+                    showAlertDialog("You must enter a rating.");
+                    return;
+                }
                 String firstLine = binding.entryInputEditText.getText().toString();
+                if (firstLine.isEmpty()) {
+                    showAlertDialog("You must enter something that you are grateful for.");
+                    return;
+                }
                 Date currentDate = new Date();
                 Date lastUpdate = new Date();
                 addEntryToDatabase(currentDate, lastUpdate, firstLine, emoji, rating);
             }
         });
     }
-    // Method to handle emoji selection
+
+
     private void onEmojiSelected(int emojiResId) {
-        // Set the selected emoji
         selectedEmoji = getEmojiStringFromResource(emojiResId);
 
-        // You may also highlight the selected emoji or provide visual feedback to the user if needed
-        // For example, change the background color of the selected ImageView
-
-        // Reset the background color for all ImageViews (unselect all)
         resetEmojiImageViewsBackground();
 
-        // Set a background color for the selected ImageView (to indicate selection)
         ImageView selectedImageView = getImageViewByEmojiResource(emojiResId);
         if (selectedImageView != null) {
             selectedImageView.setBackgroundColor(getResources().getColor(R.color.selectedEmojiBackground));
         }
 
-        if (emojiResId == R.drawable.em_complicated) {
-            // Handle the case for em_complicated
-        } else if (emojiResId == R.drawable.em_good) {
-            // Handle the case for em_good
-        } else if (emojiResId == R.drawable.em_moderate) {
-            // Handle the case for em_moderate
-        } else if (emojiResId == R.drawable.em_poor) {
-            // Handle the case for em_poor
-        } else if (emojiResId == R.drawable.em_shocking) {
-            // Handle the case for em_shocking
-        }
-        // Add more else-if blocks as needed
     }
 
-    // Method to reset the background color of all emoji ImageViews
     private void resetEmojiImageViewsBackground() {
         binding.emojiImageView1.setBackgroundColor(Color.TRANSPARENT);
         binding.emojiImageView2.setBackgroundColor(Color.TRANSPARENT);
@@ -159,7 +165,7 @@ public class AddEntryActivity extends AppCompatActivity {
         } else if (resId == R.drawable.em_shocking) {
             return "em_shocking";
         } else {
-            return ""; // Handle the default case or throw an exception if needed
+            return "em_complicated";
         }
     }
 
@@ -185,6 +191,7 @@ public class AddEntryActivity extends AppCompatActivity {
         entry.setDate(formatDate(dateTimpestamp));
         entry.setLastUpdate(formatDate(lastUpdate.getTime()));
         long entryId = db.entryDao().insertEntry(entry);
+
         // This is to log the entry id after it is added
         List<Entry> entryList = db.entryDao().getAllEntries();
         Log.d("AddEntryActivity", "Number of entries after insertion: " + entryList.size());
@@ -200,5 +207,17 @@ public class AddEntryActivity extends AppCompatActivity {
     private long formatDate(long timestamp) {
         return timestamp;
     }
+
+    private void showAlertDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // You have to have this method even though we're not doing any handling here.
+                    }
+                });
+        builder.create().show();
+    }
+
 
 }

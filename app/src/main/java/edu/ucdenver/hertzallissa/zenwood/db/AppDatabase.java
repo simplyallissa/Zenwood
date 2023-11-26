@@ -1,7 +1,6 @@
 package edu.ucdenver.hertzallissa.zenwood.db;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import androidx.room.Database;
 import androidx.room.Room;
@@ -11,7 +10,6 @@ import androidx.room.RoomDatabase;
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract EntryDao entryDao();
-
     private static AppDatabase INSTANCE;
 
     public static AppDatabase getDbInstance(Context context) {
@@ -23,7 +21,5 @@ public abstract class AppDatabase extends RoomDatabase {
                     .build();
         }
         return INSTANCE;
-
     }
-
 }

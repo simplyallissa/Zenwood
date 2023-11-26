@@ -4,6 +4,9 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+    <style name="MyToolbarTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">#DFD6A8</item>
+    </style>
 
     <style name="Theme.Zenwood" parent="Base.Theme.Zenwood" />
 </resources>

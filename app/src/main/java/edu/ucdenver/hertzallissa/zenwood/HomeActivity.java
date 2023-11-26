@@ -57,9 +57,9 @@ public class HomeActivity extends AppCompatActivity {
 
     void updateNoEntriesTextViewVisibility(List<Entry> entryList) {
         if (entryList.isEmpty()) {
-            showNoEntriesTextView(); // Show the TextView when there are no entries
+            showNoEntriesTextView();
         } else {
-            hideNoEntriesTextView(); // Hide the TextView when there are entries
+            hideNoEntriesTextView();
         }
     }
 
@@ -81,15 +81,6 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//
-//        if(id == R.id.) {
-//
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
     @Override
     protected void onResume(){
         super.onResume();
