@@ -2,13 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#6f6a78">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="53dp"
         android:background="?attr/colorPrimary">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/editToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                android:id="@+id/custom_title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_entry_title"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
     <TextView
         android:id="@+id/whatEmoji2TextView"
@@ -18,7 +41,9 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:text="@string/what_emoji_best_describes_your_day"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#DFD6A8"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,36 +94,43 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/yourDay2TextView"
+            <TextView
+                android:id="@+id/yourDay2TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="@string/enter_a_number_1_10"
+                android:text="@string/how_was_your_day"
+                android:textSize="20sp"
+                android:textColor="#DFD6A8"/>
+            <EditText
+                android:id="@+id/rating2EditText"
+                android:layout_width="195dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:ems="10"
+                android:hint="@string/enter_a_number_1_10"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:textColorHint="#FFFFFF"/>
+        </TableRow>
+    </TableLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="20dp"
-        android:contentDescription="@string/enter_a_number_1_10"
-        android:text="@string/how_was_your_day"
-        android:textSize="20sp" />
-    <EditText
-        android:id="@+id/rating2EditText"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:ems="10"
-        android:hint="@string/enter_a_number_1_10"
-        android:inputType="number"
-        android:textSize="20sp" />
-</TableRow>
-    </TableLayout>
-
+        android:orientation="horizontal">
     <TextView
         android:id="@+id/gratefulFor2TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="@string/what_are_you_grateful_for"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#DFD6A8"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -115,7 +147,9 @@
             android:ems="10"
             android:gravity="top"
             android:hint="@string/write_your_entry_here"
-            android:inputType="text|textMultiLine" />
+            android:inputType="text|textMultiLine"
+            android:textColorHint="#000000"
+            android:textColor="#000000"/>
     </LinearLayout>
 
     <LinearLayout
@@ -126,7 +160,7 @@
 
         <Button
             android:id="@+id/updateButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/update"
             android:textAlignment="center" />
