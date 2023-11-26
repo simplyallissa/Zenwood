@@ -1,2 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Zenwood</string>
+    <string name="enter_a_number_1_10">Ingresar 1–10.</string>
+    <string name="how_was_your_day">Cómo estuvo su día?</string>
+    <string name="what_are_you_grateful_for">Por que estas agradecida?</string>
+    <string name="write_your_entry_here">Escribe tu entrada aquí.</string>
+    <string name="add">Agregar</string>
+    <string name="what_emoji_best_describes_your_day">¿Qué emoji describe mejor tu día?</string>
+    <string name="update">Actualizar</string>
+    <string name="rating">Clasificación</string>
+    <string name="first_line_of_entry">Primera línea de entrada</string>
+    <string name="edit_button">Botón Editar</string>
+    <string name="edit">Editar</string>
+    <string name="edit_button_text">editar</string>
+    <string name="delete">Borrar</string>
+    <string name="no_entries_to_display">No hay entradas para mostrar.</string>
+    <string name="past_entries">Entradas pasadas</string>
+    <string name="add_entry">Añadir entrada</string>
+    <string name="welcome_back_what_are_you_feeling_grateful_for_today">¡Bienvenido de nuevo! ¿Por qué te sientes agradecido hoy?</string>
+    <string name="last_update_date">Última Fecha de Actualización</string>
+    <string name="updated">Actualizada:</string>
+    <string name="date">Fecha</string>
+    <string name="created">Creada:</string>
+    <string name="emoji_1">Emoji 1</string>
+    <string name="editbutton">BotónEditar</string>
+    <string name="deletebutton">BotónEliminar</string>
+    <string name="back">Atrás</string>
+    <string name="add_entry_title">Añadir entrada</string>
+    <string name="edit_entry_title">Editar entrada</string>
+</resources>
