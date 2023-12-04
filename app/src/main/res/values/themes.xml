@@ -2,10 +2,13 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Zenwood" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">#DFD6A8</item>
+        <item name="android:windowSplashScreenBackground">#7E31E6</item>
+
     </style>
     <style name="MyToolbarTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textColor">#DFD6A8</item>
     </style>
 
     <style name="Theme.Zenwood" parent="Base.Theme.Zenwood" />
+
 </resources>
